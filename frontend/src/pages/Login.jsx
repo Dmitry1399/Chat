@@ -1,29 +1,68 @@
-import { Link } from 'react-router-dom';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+import {
+  FormGroup, FormControl, Button, FormFloating, FormLabel,
+} from 'react-bootstrap';
+import LoginComponent from "../сomponents/LoginComponent.jsx";
 
-const Login = ({ children }) => {
-    return (
-        <div className="container-fluid h-100">
-          <div className="row justify-content-center align-content-center h-100">
-            <div className="col-12 col-md-8 col-xxl-6">
-              <div className="card shadow-sm">
-                <div className="card-body row p-5">
-                  <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
-                    <img src="https://frontend-chat-ru.hexlet.app/static/media/404.38677c8fa96b7e2b6537040f39020684.svg" alt="Войти" className="rounded-circle img-fluid" />
-                  </div>
-                  {children}
-                </div>
-                <div className="card-footer p-4">
-                  <div className="text-center">
-                    <span>Нет аккаунта?</span>
-                    <Link to="*">Регистрация</Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
+
+
+const Login = () => {
+
+const validateLoginSchema = Yup.object().shape({
+  username: Yup.string().required('Обязательное поле'),
+  password: Yup.string().required('Обязательное поле'),
+});
+
+  return (
+    <LoginComponent>
+      <Formik
+      initialValues={{ username: '', password: ''}}
+      validationSchema={validateLoginSchema}
+      validateOnChange={false}
+      validateOnBlur={false}
+      >
+        {({ errors, values, handleChange, handleBlur, isSubmitting,
+
+        }) => (
+          <Form className="col-12 col-md-6 mt-3 mt-mb-0">
+            <h1 className="text-center mb-4">Войти</h1>
+
+            <FormFloating className="mb-3">
+              <FormControl
+              name='username'
+              id='username'
+              value={values.username}
+              onBlur={handleBlur}
+              onChange={handleChange}
+              isInvalid={!!errors.password}
+              autoFocus
+              />
+              <FormLabel htmlFor='password'>Ваш ник</FormLabel>
+            </FormFloating>
+
+            <FormFloating className="mb-3">
+              <FormControl
+              name='password'
+              id='password'
+              value={values.password}
+              onBlur={handleBlur}
+              onChange={handleChange}
+              isInvalid={!!errors.password}
+              autoFocus
+              />
+              <FormLabel htmlFor='password'>Пароль</FormLabel>
+              <FormGroup className="invalid-tooltip">{errors.password}</FormGroup>
+            </FormFloating>
+
+            <Button type="submit" variant="outline-primary" className="w-100" disabled={isSubmitting}>
+            Войти
+            </Button>
+          </Form>
+        )}
+      </Formik>
+    </LoginComponent>
+  );
 };
-
 
 export default Login;
