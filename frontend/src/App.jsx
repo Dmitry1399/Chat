@@ -5,19 +5,26 @@ import {
 import NotFound from './pages/NotFound.jsx';
 import Login from './pages/Login.jsx';
 import AppContainer from './сomponents/AppContainer.jsx';
+import PrivateRoute from './containers/Routes/PrivateRoute.jsx';
+import Home from './pages/Home.jsx';
+import { Provider } from 'react-redux';
+import store from './store/index.js';
+import AuthProvider from './context/auth/AuthProvider.jsx';
 
-const App = () => {
- return (
- <AppContainer>
- <BrowserRouter>
-  <Routes>
-  <Route path="/" element={<Login />} />
-  <Route path="/login" element={<Login />} />
-  <Route path="*" element={<NotFound />} />
-  </Routes>
+const App = () => (
+  <Provider store={store}>
+  <AuthProvider>
+  <BrowserRouter>
+    <AppContainer>
+      <Routes>
+        <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </AppContainer>
   </BrowserRouter>
-  </AppContainer>
- );
-};
+  </AuthProvider>
+  </Provider> 
+);
 
 export default App;

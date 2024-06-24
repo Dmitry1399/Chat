@@ -15,7 +15,7 @@ const LoginComponent = ({ children }) => {
                 <div className="card-footer p-4">
                   <div className="text-center">
                     <span>Нет аккаунта?</span>
-                    <Link to="*">Регистрация</Link>
+                    <Link to="*"> Регистрация</Link>
                   </div>
                 </div>
               </div>
