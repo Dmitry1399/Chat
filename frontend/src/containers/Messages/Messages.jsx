@@ -14,11 +14,11 @@ const Messages = ({ messages, children }) => {
     );
 
     const messageCount = currentChannelMessages.length;
-
+    
     useEffect(() => {
-        if(messagesBoxRef.current) {
-            messagesBoxRef.current.scrollTop = messagesBoxRef.current.scrollHeight;
-        }
+      if(messagesBoxRef.current) {
+          messagesBoxRef.current.scrollTop = messagesBoxRef.current.scrollHeight;
+      }
     }, [currentChannelMessages]);
 
     return (
@@ -37,7 +37,7 @@ const Messages = ({ messages, children }) => {
         {children}
       </div>
     </div>
-    )
+    );
 };
 
 export default Messages;

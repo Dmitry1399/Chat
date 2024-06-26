@@ -2,22 +2,32 @@ import { Formik, Form } from 'formik';
 import { FormGroup, FormControl } from 'react-bootstrap';
 import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux"
+import { useAddMessageMutation } from '../../Api/homeMessagesApi.js';
 
 
 
 const NewMessage = () => {
+    const [addMessage, { data }] = useAddMessageMutation();
     const { currentChannelId } = useSelector((state) => state.app);
+    const { username } = useSelector((state) => state.auth);
+
 
     const inputRef = useRef();
 
     useEffect(() => {
         inputRef.current.focus();
+    }, [currentChannelId, data]);
 
-    }, [currentChannelId]);
+    const handleAddMessage = async (body, resetForm) => {
+      
+      
+      await addMessage({ body: body, channelId: currentChannelId, username });
+      resetForm();
+    };
 
     return (
         <FormGroup className="mt-auto px-5 py-3">
-      <Formik initialValues={{ body: '' }} >
+      <Formik initialValues={{ body: '' }} onSubmit={({ body }, { resetForm }) => handleAddMessage(body, resetForm)}>
         {({
           values, handleChange, isSubmitting,
         }) => (
@@ -35,7 +45,7 @@ const NewMessage = () => {
                 disabled={isSubmitting}
               />
               <button type="submit" className="btn btn-group-vertical" disabled={!values.body.trim() || isSubmitting} style={{ border: 'none' }}>
-                <img src={'http://www.w3.org/2000/svg'} alt={'Отправить сообщение'} width="20" height="20" />
+                <img src={'https://img.lovepik.com/free-png/20220214/lovepik-yellow-duck-png-image_400973987_wh860.png'} alt={'Отправить сообщение'} width="20" height="20" />
               </button>
             </FormGroup>
           </Form>
