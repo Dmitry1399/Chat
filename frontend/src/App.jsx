@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom';
 import NotFound from './pages/NotFound.jsx';
 import Login from './pages/Login.jsx';
-import AppContainer from './сomponents/AppContainer.jsx';
+import AppContainer from './components/AppContainer.jsx'
 import PrivateRoute from './containers/Routes/PrivateRoute.jsx';
 import Home from './pages/Home.jsx';
 

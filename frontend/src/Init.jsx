@@ -7,23 +7,20 @@ import AuthProvider from './context/auth/AuthProvider.jsx';
 import SocketProvider from './context/socket/SocketProvider.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-
 const Init = () => {
-    
-    const socket = io();
+  const socket = io();
 
-    return (
-        <Provider store={store}>
-              <React.StrictMode>
-              <SocketProvider socket={socket}>
-                <AuthProvider>
-                  <App />
-                </AuthProvider>
-              </SocketProvider>
-              </React.StrictMode>
-        </Provider>
-      );
-    };
-    
+  return (
+    <Provider store={store}>
+      <React.StrictMode>
+          <SocketProvider socket={socket}>
+            <AuthProvider>
+              <App />
+            </AuthProvider>
+          </SocketProvider>
+      </React.StrictMode>
+    </Provider>
+  );
+};
+
 export default Init;

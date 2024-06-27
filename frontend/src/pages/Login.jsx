@@ -3,9 +3,9 @@ import * as Yup from 'yup';
 import {
   FormGroup, FormControl, Button, FormFloating, FormLabel,
 } from 'react-bootstrap';
-import LoginComponent from "../сomponents/LoginComponent.jsx";
+import LoginComponent from '../components/LoginComponent.jsx';
 import useAuthContext from '../hooks/useAuthContext.js';
-import { useLoginMutation } from '../Api/autheticateApi.js';
+import { useLoginMutation } from '../api/authenticateApi.js';
 import { useDispatch } from 'react-redux';
 import useLocalStorage from '../hooks/useLocalStorage.js';
 import { useNavigate } from 'react-router-dom';
@@ -76,7 +76,7 @@ const handleFormSubmit = async (values, { setSubmitting, setErrors }) => {
 
         }) => (
           <Form className="col-12 col-md-6 mt-3 mt-mb-0">
-            <h1 className="text-center mb-4">Войти</h1>
+            <h1 className="text-center mb-4">{'Войти'}</h1>
 
             <FormFloating className="mb-3">
               <FormControl
@@ -99,14 +99,13 @@ const handleFormSubmit = async (values, { setSubmitting, setErrors }) => {
               onBlur={handleBlur}
               onChange={handleChange}
               isInvalid={!!errors.password}
-              autoFocus
               />
-              <FormLabel htmlFor='password'>Пароль</FormLabel>
+              <FormLabel htmlFor='password'>{'Пароль'}</FormLabel>
               <FormGroup className="invalid-tooltip">{errors.password}</FormGroup>
             </FormFloating>
 
             <Button type="submit" variant="outline-primary" className="w-100" disabled={isSubmitting}>
-            Войти
+            {'Войти'}
             </Button>
           </Form>
         )}
