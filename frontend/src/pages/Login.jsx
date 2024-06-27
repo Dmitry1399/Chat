@@ -11,11 +11,12 @@ import useLocalStorage from '../hooks/useLocalStorage.js';
 import { useNavigate } from 'react-router-dom';
 import { setUserData } from '../store/slices/auth.js';
 import avatar from '../assets/login.jpg';
-
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
 
   const { setAuth } = useAuthContext();
+  const { t } = useTranslation();
   const [login] = useLoginMutation();
 
   const dispatch = useDispatch();
@@ -25,8 +26,8 @@ const Login = () => {
   const navigate = useNavigate();
 
 const validateLoginSchema = Yup.object().shape({
-  username: Yup.string().required('Обязательное поле'),
-  password: Yup.string().required('Обязательное поле'),
+  username: Yup.string().required(t('loginPage.errors.usernameRequier')),
+  password: Yup.string().required(t('loginPage.errors.passwordRequired')),
 });
 
 const handleFormSubmit = async (values, { setSubmitting, setErrors }) => {
@@ -76,7 +77,7 @@ const handleFormSubmit = async (values, { setSubmitting, setErrors }) => {
 
         }) => (
           <Form className="col-12 col-md-6 mt-3 mt-mb-0">
-            <h1 className="text-center mb-4">{'Войти'}</h1>
+            <h1 className="text-center mb-4">{t('loginPage.form.header')}</h1>
 
             <FormFloating className="mb-3">
               <FormControl
@@ -88,7 +89,7 @@ const handleFormSubmit = async (values, { setSubmitting, setErrors }) => {
               isInvalid={!!errors.password}
               autoFocus
               />
-              <FormLabel htmlFor='password'>Ваш ник</FormLabel>
+              <FormLabel htmlFor='username'>{t('loginPage.form.username')}</FormLabel>
             </FormFloating>
 
             <FormFloating className="mb-3">
@@ -100,12 +101,12 @@ const handleFormSubmit = async (values, { setSubmitting, setErrors }) => {
               onChange={handleChange}
               isInvalid={!!errors.password}
               />
-              <FormLabel htmlFor='password'>{'Пароль'}</FormLabel>
+              <FormLabel htmlFor='password'>{t('loginPage.form.password')}</FormLabel>
               <FormGroup className="invalid-tooltip">{errors.password}</FormGroup>
             </FormFloating>
 
             <Button type="submit" variant="outline-primary" className="w-100" disabled={isSubmitting}>
-            {'Войти'}
+              {t('loginPage.form.loginButton')}
             </Button>
           </Form>
         )}

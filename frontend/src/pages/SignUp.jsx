@@ -11,10 +11,12 @@ import {
     FormGroup, FormControl, Button, FormFloating, FormLabel,
   } from 'react-bootstrap';
 import signap from '../assets/signup.jpg'
+import { useTranslation } from 'react-i18next';
 
 
 const SignUp = () => {
    const navigate = useNavigate();
+   const { t } = useTranslation();
     const { setAuth } = useAuthContext();
     const [signUp] = useSignUpMutation();
 
@@ -76,7 +78,7 @@ const SignUp = () => {
           errors, values, handleChange, handleBlur, isSubmitting,
         }) => (
           <Form className="w-50">
-            <h1 className="text-center mb-4">{'Регистрация'}</h1>
+            <h1 className="text-center mb-4">{t('signupPage.form.header')}</h1>
             <FormFloating className="mb-3">
               <FormControl
                 name="username"
@@ -87,7 +89,7 @@ const SignUp = () => {
                 isInvalid={!!errors.username}
                 autoFocus
               />
-              <FormLabel htmlFor="username">{'Имя пользователя'}</FormLabel>
+              <FormLabel htmlFor="username">{t('signupPage.form.username')}</FormLabel>
               <FormGroup className="invalid-tooltip">{errors.username}</FormGroup>
             </FormFloating>
 
@@ -101,7 +103,7 @@ const SignUp = () => {
                 onChange={handleChange}
                 isInvalid={!!errors.password}
               />
-              <FormLabel htmlFor="password">{'Пароль'}</FormLabel>
+              <FormLabel htmlFor="password">{t('signupPage.form.password')}</FormLabel>
               <FormGroup className="invalid-tooltip">{errors.password}</FormGroup>
             </FormFloating>
 
@@ -115,11 +117,11 @@ const SignUp = () => {
                 onChange={handleChange}
                 isInvalid={!!errors.confirmPassword}
               />
-              <FormLabel htmlFor="confirmPassword">{'Подтвердите пароль'}</FormLabel>
+              <FormLabel htmlFor="confirmPassword">{t('signupPage.form.passwordConfirm')}</FormLabel>
               <FormGroup className="invalid-tooltip">{errors.confirmPassword}</FormGroup>
             </FormFloating>
             <Button type="submit" variant="outline-primary" className="w-100" disabled={isSubmitting}>
-              {'Зарегистрироваться'}
+             {t('signupPage.form.registrationButton')}
             </Button>
           </Form>
         )}

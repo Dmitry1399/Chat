@@ -1,10 +1,11 @@
 import { useRef, useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import Message from '../../components/Message.jsx';
+import { useTranslation } from 'react-i18next';
 
 const Messages = ({ messages, children }) => {
   const { currentChannel, currentChannelId } = useSelector((state) => state.app);
-
+  const { t } = useTranslation();
   const messagesBoxRef = useRef(null);
 
   const currentChannelMessages = useMemo(
@@ -27,7 +28,7 @@ const Messages = ({ messages, children }) => {
           <p className="m-0">
             <b>{`# ${currentChannel}`}</b>
           </p>
-          <span className="text-muted">{messageCount}</span>
+          <span className="text-muted">{t('homePage.messageCount.message', { count: messageCount })}</span>
         </div>
         <div ref={messagesBoxRef} id="messages-box" className="chat-messages overflow-auto px-5">
           {currentChannelMessages

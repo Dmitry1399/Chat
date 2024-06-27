@@ -3,9 +3,11 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { Dropdown } from "react-bootstrap";
 import ChannelButton from "./ChannelButton";
 import { changeModalState } from "../../store/slices/app.js";
+import { useTranslation } from 'react-i18next';
 
 const RemovableChannel = ({ channel }) => {
     const dispatch = useDispatch();
+    const { t } = useTranslation();
 
     const { currentChannel } = useSelector((state) => state.app);
 
@@ -21,7 +23,7 @@ const RemovableChannel = ({ channel }) => {
             variant={`${currentChannel === channel.name ? 'secondary' : ''}`}
             className="flex-grow-0 dropdown-toggle-split"
             >
-                <span className="visually-hidden">{'Управление каналом'}</span>
+                <span className="visually-hidden">{t('homePage.setupChannel')}</span>
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
@@ -35,7 +37,7 @@ const RemovableChannel = ({ channel }) => {
                     }),
                   )}
                 >
-                    {'Удалить'}
+                    {t('homePage.modals.deleteDropMenu')}
                 </Dropdown.Item>
                 <Dropdown.Item
                 href="#"
@@ -48,7 +50,7 @@ const RemovableChannel = ({ channel }) => {
                     }),
                   )}
                 >
-                    {'Переименовать'}
+                    {t('homePage.modals.renameDropMenu')}
                 </Dropdown.Item>
             </Dropdown.Menu>
        </Dropdown>

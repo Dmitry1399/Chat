@@ -3,9 +3,11 @@ import { Modal, FormGroup, Button } from 'react-bootstrap';
 import { changeChannel } from '../../store/slices/app.js';
 import { useRemoveChannelMutation, useGetChannelsQuery } from '../../api/homeChannelsApi.js';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const RemoveChannel = ({ handleCloseModal }) => {
   const { currentChannelId, editChannelId } = useSelector((state) => state.app);
+  const { t } = useTranslation();
 
   const [removeChannel] = useRemoveChannelMutation();
   const { status } = useGetChannelsQuery();
@@ -18,7 +20,7 @@ const RemoveChannel = ({ handleCloseModal }) => {
       dispatch(changeChannel({ name: 'general', id: '1' }));
     }
 
-    toast.success('Канал удалён', {
+    toast.success(t('homePage.notifications.success.removeChannel'), {
       position: 'top-right',
       autoClose: 2000,
     });
@@ -29,17 +31,17 @@ const RemoveChannel = ({ handleCloseModal }) => {
   return (
     <Modal show centered onHide={handleCloseModal}>
       <Modal.Header closeButton>
-        <Modal.Title>{'Удалить канал'}</Modal.Title>
+        <Modal.Title>{t('homePage.modals.deleteChannelHeader')}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
-        <p className="lead">{'Уверены?'}</p>
+        <p className="lead">{t('homePage.modals.deleteChannelBody')}</p>
         <FormGroup className="d-flex justify-content-end">
           <Button variant="secondary" type="button" className="me-2" onClick={handleCloseModal}>
-            {'Отменить'}
+            {t('homePage.modals.declineButton')}
           </Button>
           <Button variant="danger" type="submit" onClick={handleRemoveChannel} disabled={status === 'pending'}>
-            {'Удалить'}
+            {t('homePage.modals.deleteButton')}
           </Button>
         </FormGroup>
       </Modal.Body>
