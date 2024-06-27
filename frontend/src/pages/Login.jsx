@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import useLocalStorage from '../hooks/useLocalStorage.js';
 import { useNavigate } from 'react-router-dom';
 import { setUserData } from '../store/slices/auth.js';
-
+import avatar from '../assets/login.jpg';
 
 
 const Login = () => {
@@ -64,7 +64,7 @@ const handleFormSubmit = async (values, { setSubmitting, setErrors }) => {
 };
 
   return (
-    <LoginComponent>
+    <LoginComponent avatar={avatar}>
       <Formik
       initialValues={{ username: '', password: ''}}
       onSubmit={handleFormSubmit}

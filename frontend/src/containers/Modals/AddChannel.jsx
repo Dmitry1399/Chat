@@ -34,7 +34,7 @@ const AddChannel = ({ handleCloseModal }) => {
     const newChannel = { name: filteredChannelName };
     const { data: { name, id } } = await addChannel(newChannel);
 
-    toast.success('qe', {
+    toast.success('Канал создан', {
       position: 'top-right',
       autoClose: 2000,
     });
@@ -56,7 +56,7 @@ const AddChannel = ({ handleCloseModal }) => {
       }) => (
         <Modal show centered onHide={handleCloseModal}>
           <Modal.Header closeButton>
-            <Modal.Title>{'zxc'}</Modal.Title>
+            <Modal.Title>{'Добавить канал'}</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>

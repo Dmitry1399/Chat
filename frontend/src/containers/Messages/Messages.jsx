@@ -5,7 +5,6 @@ import Message from '../../components/Message.jsx';
 const Messages = ({ messages, children }) => {
   const { currentChannel, currentChannelId } = useSelector((state) => state.app);
 
-
   const messagesBoxRef = useRef(null);
 
   const currentChannelMessages = useMemo(
@@ -32,15 +31,7 @@ const Messages = ({ messages, children }) => {
         </div>
         <div ref={messagesBoxRef} id="messages-box" className="chat-messages overflow-auto px-5">
           {currentChannelMessages
-            ?.map((message) => {
-              return (
-                <div className="text-break mb-2">
-                      <b>{message.username}</b>
-                      {': '}
-                      {message.body}
-                  </div>
-              )
-            })}
+            ?.map((message) => <Message message={message}></Message>)}
         </div>
         {children}
       </div>
