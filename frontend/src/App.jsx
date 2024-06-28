@@ -12,7 +12,7 @@ import SignUp from './pages/SignUp.jsx';
 import NavBar from './components/NavBar.jsx';
 
 const rollbarConfig = {
-  accessToken: process.env.ROLLBAR_ACCESS_TOKEN,
+  accessToken: 'sYUec0__ZNdJWnleAAAC',
   captureUncaught: true,
   captureUnhandledRejections: true,
   environment: 'production',
@@ -25,7 +25,6 @@ const App = () => (
             <AppContainer>
               <NavBar />
               <Routes>
-                {console.log(rollbarConfig.accessToken)}
                 <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
