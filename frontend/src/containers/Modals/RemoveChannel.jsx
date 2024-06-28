@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal, FormGroup, Button } from 'react-bootstrap';
-import { changeChannel } from '../../store/slices/app.js';
-import { useRemoveChannelMutation, useGetChannelsQuery } from '../../api/homeChannelsApi.js';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { changeChannel } from '../../store/slices/app.js';
+import { useRemoveChannelMutation, useGetChannelsQuery } from '../../api/homeChannelsApi.js';
 
 const RemoveChannel = ({ handleCloseModal }) => {
   const { currentChannelId, editChannelId } = useSelector((state) => state.app);

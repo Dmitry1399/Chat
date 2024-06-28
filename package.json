@@ -1,7 +1,7 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/Dmitry1399/frontend-project-12/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Dmitry1399/frontend-project-12/actions)",
+  "description": "Chat project",
   "main": "index.js",
   "scripts": {
     "build": "npm run build --prefix frontend",

@@ -6,9 +6,9 @@ import {
   Modal, FormGroup, FormControl, Button,
 } from 'react-bootstrap';
 import filter from 'leo-profanity';
-import { useEditChannelMutation } from '../../api/homeChannelsApi.js';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { useEditChannelMutation } from '../../api/homeChannelsApi.js';
 
 const RenameChannel = ({ handleCloseModal }) => {
   const { channelNames, editChannelId, editChannelName } = useSelector((state) => state.app);
@@ -64,7 +64,7 @@ const RenameChannel = ({ handleCloseModal }) => {
               <FormGroup>
                 <FormControl name="name" id="name" className="mb-2" value={values.name} onChange={handleChange} isInvalid={!!errors.name} ref={inputRef} />
                 <label htmlFor="name" className="visually-hidden">
-                 {t('homePage.modals.newChannelName')}
+                  {t('homePage.modals.newChannelName')}
                 </label>
                 <FormGroup className="invalid-feedback">{errors.name}</FormGroup>
                 <FormGroup className="d-flex justify-content-end">
@@ -72,7 +72,7 @@ const RenameChannel = ({ handleCloseModal }) => {
                     {t('homePage.modals.declineButton')}
                   </Button>
                   <Button variant="primary" type="submit" disabled={isSubmitting}>
-                    {t('homePage.modals.confirmButton')}  
+                    {t('homePage.modals.confirmButton')}
                   </Button>
                 </FormGroup>
               </FormGroup>

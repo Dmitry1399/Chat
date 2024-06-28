@@ -1,15 +1,15 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { io } from 'socket.io-client';
+import filter from 'leo-profanity';
+import { I18nextProvider } from 'react-i18next';
+import i18next from 'i18next';
 import App from './App.jsx';
 import store from './store/index.js';
 import AuthProvider from './context/auth/AuthProvider.jsx';
 import SocketProvider from './context/socket/SocketProvider.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import i18next from 'i18next';
-import { I18nextProvider } from 'react-i18next';
 import resources from './locales/index.js';
-import filter from 'leo-profanity';
 
 const Init = async () => {
   const socket = io();

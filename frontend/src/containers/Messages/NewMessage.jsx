@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import { useRef, useEffect } from 'react';
 import { FormGroup, FormControl } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useAddMessageMutation } from '../../api/homeMessagesApi.js';
 import filter from 'leo-profanity';
+import { useAddMessageMutation } from '../../api/homeMessagesApi.js';
 import sendButton from '../../assets/sendButton.png';
 
 const NewMessage = () => {

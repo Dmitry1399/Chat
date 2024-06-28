@@ -6,10 +6,10 @@ import {
   Modal, FormGroup, FormControl, Button,
 } from 'react-bootstrap';
 import filter from 'leo-profanity';
-import { useAddChannelMutation } from '../../api/homeChannelsApi.js';
-import { changeChannel } from '../../store/slices/app.js';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { useAddChannelMutation } from '../../api/homeChannelsApi.js';
+import { changeChannel } from '../../store/slices/app.js';
 
 const AddChannel = ({ handleCloseModal }) => {
   const { channelNames } = useSelector((state) => state.app);

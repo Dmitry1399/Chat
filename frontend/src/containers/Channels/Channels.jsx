@@ -1,27 +1,26 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux"
-import { changeModalState, setChannels } from "../../store/slices/app.js";
-import RemovableChannel from "./RemovableChannel.jsx";
-import NonRemovableChannel from "../../components/NonRemovableChannel.jsx";
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import addChannelImg from "../../assets/addChannelButton.png";
+import { changeModalState, setChannels } from '../../store/slices/app.js';
+import RemovableChannel from './RemovableChannel.jsx';
+import NonRemovableChannel from '../../components/NonRemovableChannel.jsx';
+import addChannelImg from '../../assets/addChannelButton.png';
 
 const Channels = ({ channels }) => {
-    
-    const dispatch = useDispatch();
-    const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
 
-    const getChannelNames = (fethchChannels) => fethchChannels?.map(({name}) => name) ?? [];
+  const getChannelNames = (fethchChannels) => fethchChannels?.map(({ name }) => name) ?? [];
 
-    useEffect(() => {
-        if(channels) {
-            const cNames = getChannelNames(channels);
-            dispatch(setChannels(cNames));
-        }
-    }, [channels, dispatch]);
+  useEffect(() => {
+    if (channels) {
+      const cNames = getChannelNames(channels);
+      dispatch(setChannels(cNames));
+    }
+  }, [channels, dispatch]);
 
-    return (
-        <div className="col-4 col-md-2 border-end px-0 bg-light flex-column h-100 d-flex">
+  return (
+    <div className="col-4 col-md-2 border-end px-0 bg-light flex-column h-100 d-flex">
       <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">
         <b>{t('homePage.channels')}</b>
         <button
@@ -39,7 +38,7 @@ const Channels = ({ channels }) => {
           : <NonRemovableChannel channel={channel} key={channel.id} />))}
       </ul>
     </div>
-    );
+  );
 };
 
 export default Channels;

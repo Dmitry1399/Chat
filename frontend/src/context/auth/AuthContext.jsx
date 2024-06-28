@@ -1,7 +1,7 @@
-import { createContext } from "react";
+import { createContext } from 'react';
 
 export default createContext({
-    isAuthed: false,
-    setAuth: () => {},
-    logOut: () => {},
+  isAuthed: false,
+  setAuth: () => {},
+  logOut: () => {},
 });

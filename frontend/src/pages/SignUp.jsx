@@ -1,72 +1,71 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import useAuthContext from "../hooks/useAuthContext";
-import { useSignUpMutation } from "../api/authenticateApi";
-import { useDispatch } from "react-redux";
-import useLocalStorage from "../hooks/useLocalStorage";
-import { setUserData } from "../store/slices/auth.js";
-import SignupComponent from "../components/SignupComponent";
-import { Formik, Form } from "formik";
+import { useDispatch } from 'react-redux';
+import { Formik, Form } from 'formik';
 import {
-    FormGroup, FormControl, Button, FormFloating, FormLabel,
-  } from 'react-bootstrap';
-import signap from '../assets/signup.jpg'
+  FormGroup, FormControl, Button, FormFloating, FormLabel,
+} from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-
+import useAuthContext from '../hooks/useAuthContext';
+import { useSignUpMutation } from '../api/authenticateApi';
+import useLocalStorage from '../hooks/useLocalStorage';
+import { setUserData } from '../store/slices/auth.js';
+import SignupComponent from '../components/SignupComponent';
+import signap from '../assets/signup.jpg';
 
 const SignUp = () => {
-   const navigate = useNavigate();
-   const { t } = useTranslation();
-    const { setAuth } = useAuthContext();
-    const [signUp] = useSignUpMutation();
-    const dispatch = useDispatch();
-    const setLocalStorageItem = useLocalStorage('set');
-    const signupSchema = Yup.object().shape({
-        username: Yup.string()
-          .min(3, 'От 3 до 20 символов')
-          .max(20, 'От 3 до 20 символов')
-          .required('Обязательное поле'),
-        password: Yup.string().min(6, 'Не менее 6 символов').required('Обязательное поле'),
-        confirmPassword: Yup.string().oneOf([Yup.ref('password')], 'Пароли должны совпадать').required('Обязательное поле'),
-      });
-      const handleFormSubmit = async (values, { setSubmitting, setErrors }) => {
-        try {
-          const { token, username } = await signUp({ ...values }).unwrap();
-          setLocalStorageItem('token', token);
-          setLocalStorageItem('username', username);
-          dispatch(setUserData({ token, username }));
-          setSubmitting(false);
-          setAuth(true);
-          navigate('/');
-        } catch (error) {
-          setSubmitting(false);
-          const { status } = error;
-          switch (status) {
-            case 0: {
-              setErrors({ username: ' ', password: ' ', confirmPassword: 'Ошибка сети' });
-              break;
-            }
-            case 409: {
-              setErrors({ username: ' ', password: ' ', confirmPassword: 'Такой пользователь уже существует' });
-              break;
-            }
-            default: {
-              setErrors({ username: ' ', password: ' ', confirmPassword: 'Неизвестная ошибка' });
-              break;
-            }
-          }
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+  const { setAuth } = useAuthContext();
+  const [signUp] = useSignUpMutation();
+  const dispatch = useDispatch();
+  const setLocalStorageItem = useLocalStorage('set');
+  const signupSchema = Yup.object().shape({
+    username: Yup.string()
+      .min(3, 'От 3 до 20 символов')
+      .max(20, 'От 3 до 20 символов')
+      .required('Обязательное поле'),
+    password: Yup.string().min(6, 'Не менее 6 символов').required('Обязательное поле'),
+    confirmPassword: Yup.string().oneOf([Yup.ref('password')], 'Пароли должны совпадать').required('Обязательное поле'),
+  });
+  const handleFormSubmit = async (values, { setSubmitting, setErrors }) => {
+    try {
+      const { token, username } = await signUp({ ...values }).unwrap();
+      setLocalStorageItem('token', token);
+      setLocalStorageItem('username', username);
+      dispatch(setUserData({ token, username }));
+      setSubmitting(false);
+      setAuth(true);
+      navigate('/');
+    } catch (error) {
+      setSubmitting(false);
+      const { status } = error;
+      switch (status) {
+        case 0: {
+          setErrors({ username: ' ', password: ' ', confirmPassword: 'Ошибка сети' });
+          break;
         }
-      };
-    return (
-        <SignupComponent avatar={signap}>
-            <Formik
-            initialValues={{ username: '', password: '', confirmPassword: '' }}
-            onSubmit={handleFormSubmit}
-            validationSchema={signupSchema}
-            validateOnChange={false}
-            validateOnBlur
-            >
-                 {({
+        case 409: {
+          setErrors({ username: ' ', password: ' ', confirmPassword: 'Такой пользователь уже существует' });
+          break;
+        }
+        default: {
+          setErrors({ username: ' ', password: ' ', confirmPassword: 'Неизвестная ошибка' });
+          break;
+        }
+      }
+    }
+  };
+  return (
+    <SignupComponent avatar={signap}>
+      <Formik
+        initialValues={{ username: '', password: '', confirmPassword: '' }}
+        onSubmit={handleFormSubmit}
+        validationSchema={signupSchema}
+        validateOnChange={false}
+        validateOnBlur
+      >
+        {({
           errors, values, handleChange, handleBlur, isSubmitting,
         }) => (
           <Form className="w-50">
@@ -113,7 +112,7 @@ const SignUp = () => {
               <FormGroup className="invalid-tooltip">{errors.confirmPassword}</FormGroup>
             </FormFloating>
             <Button type="submit" variant="outline-primary" className="w-100" disabled={isSubmitting}>
-             {t('signupPage.form.registrationButton')}
+              {t('signupPage.form.registrationButton')}
             </Button>
           </Form>
         )}
