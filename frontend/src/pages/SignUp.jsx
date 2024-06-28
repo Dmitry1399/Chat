@@ -19,11 +19,8 @@ const SignUp = () => {
    const { t } = useTranslation();
     const { setAuth } = useAuthContext();
     const [signUp] = useSignUpMutation();
-
     const dispatch = useDispatch();
-
     const setLocalStorageItem = useLocalStorage('set');
-
     const signupSchema = Yup.object().shape({
         username: Yup.string()
           .min(3, 'От 3 до 20 символов')
@@ -35,20 +32,15 @@ const SignUp = () => {
       const handleFormSubmit = async (values, { setSubmitting, setErrors }) => {
         try {
           const { token, username } = await signUp({ ...values }).unwrap();
-    
           setLocalStorageItem('token', token);
           setLocalStorageItem('username', username);
           dispatch(setUserData({ token, username }));
-    
           setSubmitting(false);
           setAuth(true);
-    
           navigate('/');
         } catch (error) {
           setSubmitting(false);
-    
           const { status } = error;
-    
           switch (status) {
             case 0: {
               setErrors({ username: ' ', password: ' ', confirmPassword: 'Ошибка сети' });
