@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Provider, ErrorBoundary } from '@rollbar/react';
 import { 
   BrowserRouter, Routes, Route, 
 } from 'react-router-dom';
@@ -10,19 +11,30 @@ import Home from './pages/Home.jsx';
 import SignUp from './pages/SignUp.jsx';
 import NavBar from './components/NavBar.jsx';
 
+const rollbarConfig = {
+  accessToken: process.env.ROLLBAR_ACCESS_TOKEN,
+  captureUncaught: true,
+  captureUnhandledRejections: true,
+  environment: 'production',
+};
 
 const App = () => (
-  <BrowserRouter>
-        <AppContainer>
-          <NavBar />
-          <Routes>
-            <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </AppContainer>
-      </BrowserRouter>
+  <Provider config={rollbarConfig}>
+    <ErrorBoundary>
+      <BrowserRouter>
+            <AppContainer>
+              <NavBar />
+              <Routes>
+                {console.log(rollbarConfig.accessToken)}
+                <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </AppContainer>
+          </BrowserRouter>
+      </ErrorBoundary>
+    </Provider>
 );
 
 
