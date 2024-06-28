@@ -11,8 +11,9 @@ import Home from './pages/Home.jsx';
 import SignUp from './pages/SignUp.jsx';
 import NavBar from './components/NavBar.jsx';
 
+
 const rollbarConfig = {
-  accessToken: process.env.ROLLBAR_ACCESS_TOKEN,
+  accessToken: 'b82bfb46bcb84a0880b7932b61b6cbd1',
   captureUncaught: true,
   captureUnhandledRejections: true,
   environment: 'production',
