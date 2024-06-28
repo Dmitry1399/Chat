@@ -12,7 +12,7 @@ import SignUp from './pages/SignUp.jsx';
 import NavBar from './components/NavBar.jsx';
 
 const rollbarConfig = {
-  accessToken: 'sYUec0__ZNdJWnleAAAC',
+  accessToken: process.env.ROLLBAR_ACCESS_TOKEN,
   captureUncaught: true,
   captureUnhandledRejections: true,
   environment: 'production',
