@@ -29,9 +29,6 @@ const Home = () => {
   const handleCloseModal = () => {
     dispatch(changeModalState({ isModalOpened: false, modalType: null, editChannelId: null }));
   };
-  useEffect(() => {
-    throw new Error('Test error from Rollbar');
-  }, []);
 
   const {
     currentChannelId,
