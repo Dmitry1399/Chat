@@ -4,6 +4,7 @@ import { useRef, useEffect } from 'react';
 import { FormGroup, FormControl } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useAddMessageMutation } from '../../api/homeMessagesApi.js';
+import filter from 'leo-profanity';
 
 const NewMessage = () => {
   const [addMessage, { data }] = useAddMessageMutation();
@@ -17,8 +18,9 @@ const NewMessage = () => {
   }, [currentChannelId, data]);
 
   const handleAddMessage = async (body, resetForm) => {
+    const filteredMessage = filter.clean(body);
 
-    await addMessage({ body: body, channelId: currentChannelId, username });
+    await addMessage({ body: filteredMessage, channelId: currentChannelId, username });
     resetForm();
   };
 

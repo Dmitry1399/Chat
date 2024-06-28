@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import i18next from 'i18next';
 import { I18nextProvider } from 'react-i18next';
 import resources from './locales/index.js';
+import filter from 'leo-profanity';
 
 const Init = async () => {
   const socket = io();
@@ -23,6 +24,10 @@ const Init = async () => {
       escapeValue: false,
     },
   });
+
+  filter.loadDictionary('ru');
+  filter.loadDictionary('en');
+
   return (
     <Provider store={store}>
       <React.StrictMode>
