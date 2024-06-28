@@ -13,12 +13,12 @@
    - **Регистрация**: Новые пользователи могут создавать учетные записи.
   ![Изображение][1]
 
-[1]: ../frontend-project-12/frontend/src/assets/ReadmeImg/signUpReadme.png "Скриншот страницы ругистрации"
+[1]: ../frontend-project-12/frontend/public/loginReadme.png "Скриншот страницы ругистрации"
    - **Вход в систему (логин)**: Зарегистрированные пользователи могут входить в систему.
 
 ![Изображение][2]
 
-[2]: ../frontend-project-12/frontend/src/assets/ReadmeImg/loginReadme.png "Скриншот страницы входа"
+[2]: ../frontend-project-12/frontend/public/signUpReadme.png "Скриншот страницы входа"
 
 
 1. **Отправка сообщений**: Пользователи могут вводить и отправлять текстовые сообщения другим участникам в рамках выбранного канала.
@@ -30,13 +30,13 @@
   
 ![Изображение][3]
 
-[3]: ../frontend-project-12/frontend/src/assets/ReadmeImg/homeReadme.png
+[3]: ../frontend-project-12/frontend/public/homeReadme.png
 "Скриншот домашней страницы"
 
 1. **Страница ошибки 404**: Есть отдельная страница, которая отображается, когда пользователь пытается получить доступ к несуществующей странице или ресурсу.
 ![Изображение][4]
 
-[4]: ../frontend-project-12/frontend/src/assets/ReadmeImg/errorImg.png
+[4]: ../frontend-project-12/frontend/public/errorImg.png
 "Скриншот страницы ошибки"
 
 ---
