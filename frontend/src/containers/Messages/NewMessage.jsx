@@ -5,6 +5,7 @@ import { FormGroup, FormControl } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useAddMessageMutation } from '../../api/homeMessagesApi.js';
 import filter from 'leo-profanity';
+import sendButton from '../../assets/sendButton.png';
 
 const NewMessage = () => {
   const [addMessage, { data }] = useAddMessageMutation();
@@ -44,7 +45,7 @@ const NewMessage = () => {
                 disabled={isSubmitting}
               />
               <button type="submit" className="btn btn-group-vertical" disabled={!values.body.trim() || isSubmitting} style={{ border: 'none' }}>
-                <img src={'#'} alt={t('homePage.sendMessageButton')} width="20" height="20" />
+                <img src={sendButton} alt={t('homePage.sendMessageButton')} width="20" height="20" />
               </button>
             </FormGroup>
           </Form>

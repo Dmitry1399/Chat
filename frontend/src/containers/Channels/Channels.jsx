@@ -4,6 +4,7 @@ import { changeModalState, setChannels } from "../../store/slices/app.js";
 import RemovableChannel from "./RemovableChannel.jsx";
 import NonRemovableChannel from "../../components/NonRemovableChannel.jsx";
 import { useTranslation } from 'react-i18next';
+import addChannelImg from "../../assets/addChannelButton.png";
 
 const Channels = ({ channels }) => {
     
@@ -28,7 +29,7 @@ const Channels = ({ channels }) => {
           className="p-0 text-primary btn btn-group-vertical"
           onClick={() => dispatch(changeModalState({ isModalOpened: true, modalType: 'adding' }))}
         >
-          <img src={'http://www.w3.org/2000/svg'} alt={t('homePage.createNewChannel')} width="20" height="20" />
+          <img src={addChannelImg} alt={t('homePage.createNewChannel')} width="20" height="20" />
           <span className="visually-hidden">+</span>
         </button>
       </div>
