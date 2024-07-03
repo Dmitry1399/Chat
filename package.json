@@ -12,8 +12,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@hexlet/chat-server": "^2.0.3",
-    "i18next": "^23.11.5",
-    "react-i18next": "^14.1.2"
+    "@hexlet/chat-server": "^2.0.3"
   }
 }
